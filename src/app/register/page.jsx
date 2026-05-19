@@ -18,6 +18,11 @@ export default function RegisterPage() {
     password: "",
   });
 
+  const handleGoogleSignin=async()=>{
+  await authClient.signIn.social({
+    provider: "google",
+  })
+}
   // input change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -125,7 +130,7 @@ export default function RegisterPage() {
             <div className="flex-1 border-t border-default-300"></div>
           </div>
 
-          <Button
+          <Button onClick={handleGoogleSignin}
             variant="bordered"
             className="w-full flex items-center gap-2"
           >
