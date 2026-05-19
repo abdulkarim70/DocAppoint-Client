@@ -1,27 +1,49 @@
 "use client";
-
+import toast from "react-hot-toast";
 import { useState } from "react";
 import Link from "next/link";
 import { Button, Card, Input } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { Stethoscope } from "lucide-react";
-
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 export default function LoginPage() {
-  const [formData, setFormData] = useState({
+  const router=useRouter()
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    console.log("Login Data:", userData);
+
+    
+      const { data, error } = await authClient.signIn.email({
+        email: userData.email,
+        password: userData.password,
+        
+      });
+    
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+    
+      if (data) {
+        toast.success("Login successful ");
+    
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
   };
 
   return (
@@ -50,23 +72,20 @@ export default function LoginPage() {
             type="email"
             name="email"
             placeholder="Enter your email"
-            value={formData.email}
+            value={userData.email}
             onChange={handleChange}
             isRequired
           />
 
-         <Input
+      <Input
   label="Password"
   type="password"
   name="password"
   placeholder="Enter your password"
-  value={formData.password}
+  value={userData.password}
   onChange={handleChange}
   isRequired
-  pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-  errorMessage="Password must contain at least 1 uppercase, 1 lowercase and minimum 6 characters"
 />
-
 
           <div className="flex justify-end">
             <Link
