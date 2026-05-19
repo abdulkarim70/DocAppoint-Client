@@ -13,7 +13,11 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
-
+const handleGoogleSignin=async()=>{
+  await authClient.signIn.social({
+    provider: "google",
+  })
+}
   const handleChange = (e) => {
     setUserData({
       ...userData,
@@ -108,7 +112,7 @@ export default function LoginPage() {
           </div>
 
           {/* Google Button */}
-          <Button
+          <Button onClick={handleGoogleSignin}
             variant="bordered"
             className="w-full flex items-center gap-2"
           >
