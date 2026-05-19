@@ -6,9 +6,11 @@ import { Button, Card, Input } from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { Stethoscope } from "lucide-react";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
+    photoURL: "",
     password: "",
   });
 
@@ -21,30 +23,43 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    console.log("Register Data:", formData);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-default-100 px-4">
-      <Card className="w-full max-w-md shadow-lg mt-10 mb-10 rounded-2xl p-8">
+      <Card className="w-full max-w-md shadow-lg rounded-2xl mt-10 mb-10 p-8">
 
         {/* Logo */}
         <div className="flex justify-center mb-6">
-  <div className="bg-cyan-500 text-white p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
-    <Stethoscope size={34} strokeWidth={2.5} />
-  </div>
-</div>
+          <div className="bg-cyan-500 text-white p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+            <Stethoscope size={34} strokeWidth={2.5} />
+          </div>
+        </div>
 
         {/* Title */}
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-semibold">Login</h2>
+          <h2 className="text-3xl font-bold">Register</h2>
           <p className="text-default-500 text-sm">
-            Welcome back to DocAppoint
+            Create your DocAppoint account
           </p>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
+          {/* Name */}
+          <Input
+            label="Name"
+            type="text"
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            isRequired
+          />
+
+          {/* Email */}
           <Input
             label="Email"
             type="email"
@@ -55,30 +70,32 @@ export default function LoginPage() {
             isRequired
           />
 
-         <Input
-  label="Password"
-  type="password"
-  name="password"
-  placeholder="Enter your password"
-  value={formData.password}
-  onChange={handleChange}
-  isRequired
-  pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-  errorMessage="Password must contain at least 1 uppercase, 1 lowercase and minimum 6 characters"
-/>
+          {/* Photo URL */}
+          <Input
+            label="Photo URL (optional)"
+            type="url"
+            name="photoURL"
+            placeholder="https://..."
+            value={formData.photoURL}
+            onChange={handleChange}
+          />
 
+          {/* Password */}
+          <Input
+            label="Password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            isRequired
+            pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
+            errorMessage="Password must contain at least 1 uppercase, 1 lowercase and minimum 6 characters"
+          />
 
-          <div className="flex justify-end">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-primary hover:underline"
-            >
-              Forgot Password?
-            </Link>
-          </div>
-
+          {/* Register Button */}
           <Button color="primary" type="submit" className="w-full">
-            Login
+            Register
           </Button>
 
           {/* OR Divider */}
@@ -97,10 +114,11 @@ export default function LoginPage() {
             Continue with Google
           </Button>
 
+          {/* Login Link */}
           <p className="text-center text-sm mt-4">
-            Dont have an account?{" "}
-            <Link href="/register" className="text-primary hover:underline">
-              Register
+            Already have an account?{" "}
+            <Link href="/login" className="text-primary hover:underline">
+              Login
             </Link>
           </p>
 
