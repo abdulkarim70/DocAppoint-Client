@@ -67,7 +67,7 @@ export default function HomePage() {
 
 
   const handleViewDetails = (id) => {
-    router.push(`/doctor/${id}`);
+    router.push(`appointments/doctor/${id}`);
   };
 
   return (
@@ -243,7 +243,7 @@ export default function HomePage() {
                           color="primary"
                           size="sm"
                           className="rounded-full px-5"
-                          onClick={() => handleViewDetails(doctor.id)}
+                          onClick={() => handleViewDetails(doctor._id)}
                         >
                           View Details
                         </Button>

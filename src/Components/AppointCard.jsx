@@ -114,7 +114,7 @@ const AppointCard = ({ doctor }) => {
             ৳{doctor.fee || "0"}
           </p>
 
-         <Link href={`/appointments/${_id}`}> 
+         <Link href={`/appointments/doctor/${_id}`}> 
           <Button
             color="primary"
             size="sm"

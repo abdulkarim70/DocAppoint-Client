@@ -1,5 +1,6 @@
 "use client";
 
+import { Stethoscope } from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -35,7 +36,7 @@ export default function Footer() {
                   justify-center text-2xl font-bold
                 "
               >
-                D
+                <Stethoscope/>
               </div>
 
               <div>
