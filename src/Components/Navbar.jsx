@@ -5,6 +5,7 @@ import { Menu, X, Stethoscope } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -55,17 +56,23 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <Avatar src={user?.image} name={user?.name} />
-                <span className="text-gray-700 font-medium">
-                  {user?.name}
-                </span>
+                 <Avatar>
+          <Avatar.Image
+            alt={user?.name}
+            src={user?.image}
+            referrerPolicy="no-referrer"
+          />
+          <Avatar.Fallback>
+            {user?.name?.slice(0, 2)}
+          </Avatar.Fallback>
+        </Avatar>
 
                 <Button
                  variant="danger"
                   radius="md"
                   onPress={handleLogout}
                 >
-                  Logout
+                 <RiLogoutCircleLine/> Logout
                 </Button>
               </>
             ) : (
@@ -114,10 +121,16 @@ export default function Navbar() {
               {user ? (
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-3">
-                    <Avatar src={user.image} name={user.name} />
-                    <span className="text-gray-700 font-medium">
-                      {user.name}
-                    </span>
+                         <Avatar>
+          <Avatar.Image
+            alt={user?.name}
+            src={user?.image}
+            referrerPolicy="no-referrer"
+          />
+          <Avatar.Fallback>
+            {user?.name?.slice(0, 2)}
+          </Avatar.Fallback>
+        </Avatar>
                   </div>
 
                   <Button
@@ -126,7 +139,7 @@ export default function Navbar() {
                     fullWidth
                     onPress={handleLogout}
                   >
-                    Logout
+                  <RiLogoutCircleLine/>  Logout
                   </Button>
                 </div>
               ) : (
