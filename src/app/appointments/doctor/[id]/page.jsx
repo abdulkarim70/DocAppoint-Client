@@ -1,6 +1,7 @@
 
 
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const DoctorsDetailsPage = async ({ params }) => {
@@ -89,9 +90,11 @@ const DoctorsDetailsPage = async ({ params }) => {
           </div>
 
           {/* Button */}
+         <Link href={`/book-appointment/${doctor._id}`}>
           <button className="mt-6 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl transition duration-300">
             Book Appointment
           </button>
+         </Link>
 
         </div>
       </div>
