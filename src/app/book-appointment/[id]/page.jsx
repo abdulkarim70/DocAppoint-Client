@@ -71,7 +71,7 @@ export default function AppointmentPage() {
               {/* Doctor Name */}
               <Input
                 label="Doctor Name"
-                defaultValue={doctor.name}
+                value={doctor.name}
                 isReadOnly
                 variant="flat"
               />
@@ -79,7 +79,7 @@ export default function AppointmentPage() {
               {/* Specialist */}
               <Input
                 label="Specialist"
-                defaultValue={doctor.specialist}
+                value={doctor.specialty}
                 isReadOnly
                 variant="flat"
               />
