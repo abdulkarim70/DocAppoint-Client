@@ -5,8 +5,13 @@ import { useParams } from "next/navigation";
 
 import { Input, Button } from "@heroui/react";
 import { CalendarDays, Clock3, UserCheck } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 export default function AppointmentPage() {
+ const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+
   const params = useParams();
   const { id } = params;
 
@@ -64,7 +69,7 @@ export default function AppointmentPage() {
             </label>
             <Input
               type="email"
-              defaultValue="user@gmail.com"
+              defaultValue={user.email}
               variant="bordered"
               placeholder="Enter your email"
               radius="xl"
