@@ -1,20 +1,23 @@
-import AppointCard from "@/Components/AppointCard";
+import DoctorSearchGrid from "@/Components/DoctorSearchGrid";
+
 export const metadata = {
   title: "All-Appoint",
   description: "All Available Doctor Here",
 };
 
 const fetchDoctor = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/appointments`,
-    {
-      cache: "no-store",
-    }
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/appointments`,
+      { cache: "no-store" }
+    );
 
-  const data = await res.json();
-
-  return data;
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return [];
+  }
 };
 
 const AllAppointmentPage = async () => {
@@ -25,33 +28,14 @@ const AllAppointmentPage = async () => {
 
       {/* HEADING */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold">
-          All Doctors
-        </h1>
-
+        <h1 className="text-4xl font-bold">All Doctors</h1>
         <p className="text-gray-500 mt-3">
           Find and book appointments with experienced doctors.
         </p>
       </div>
 
-      {/* DOCTORS GRID */}
-      <div
-        className="
-          grid gap-6
-
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
-          xl:grid-cols-4
-        "
-      >
-        {doctors.map((doctor) => (
-          <AppointCard
-            key={doctor._id}
-            doctor={doctor}
-          />
-        ))}
-      </div>
+      {/* SEARCH + GRID */}
+      <DoctorSearchGrid doctors={doctors} />
     </div>
   );
 };
