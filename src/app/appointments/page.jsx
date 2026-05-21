@@ -1,4 +1,8 @@
 import AppointCard from "@/Components/AppointCard";
+export const metadata = {
+  title: "All-Appoint",
+  description: "All Available Doctor Here",
+};
 
 const fetchDoctor = async () => {
   const res = await fetch(

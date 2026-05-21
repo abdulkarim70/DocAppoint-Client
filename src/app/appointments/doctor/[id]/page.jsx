@@ -6,6 +6,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
+export async function generateMetadata({ params }) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${params.id}`
+  );
+
+  const doctor = await res.json();
+
+  return {
+    title: doctor.name,
+    description: doctor.education || "Doctor details page",
+  };
+}
+
+
+
 const DoctorsDetailsPage = async ({ params }) => {
   const { id } = await params;
 const {token}=auth.api.getToken({
@@ -29,7 +44,7 @@ const {token}=auth.api.getToken({
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
       <div className="bg-white shadow-xl rounded-2xl max-w-5xl w-full grid md:grid-cols-2 gap-8 p-8">
 
-        {/* Left Side Image */}
+        
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
           <Image
             src={doctor?.image || "/doctor.jpg"}
@@ -39,7 +54,7 @@ const {token}=auth.api.getToken({
           />
         </div>
 
-        {/* Right Side Details */}
+       
         <div className="space-y-4">
 
           <span className="inline-block bg-teal-100 text-teal-700 px-3 py-1 text-sm rounded-full">
@@ -60,7 +75,7 @@ const {token}=auth.api.getToken({
             {doctor?.description}
           </p>
 
-          {/* Info Grid */}
+      
           <div className="grid grid-cols-2 gap-4 mt-4">
 
             <div className="bg-gray-50 p-4 rounded-xl">
@@ -85,7 +100,7 @@ const {token}=auth.api.getToken({
 
           </div>
 
-          {/* Availability */}
+        
           <div>
             <h3 className="font-semibold mt-4">Availability</h3>
             <div className="flex gap-3 mt-2">
@@ -100,7 +115,6 @@ const {token}=auth.api.getToken({
             </div>
           </div>
 
-          {/* Button */}
          <Link href={`/book-appointment/${doctor._id}`}>
           <button className="mt-6 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl transition duration-300">
             Book Appointment

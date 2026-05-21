@@ -1,9 +1,14 @@
-import HomePage from "@/Components/HomePage";
+import HomeComponent from "@/Components/HomePage";
+
+export const metadata = {
+  title: "Home",
+  description: "Welcome to Doctor Appointment System",
+};
 
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 bg-zinc-50 font-sans dark:bg-black">
-      <HomePage />
+      <HomeComponent />
     </div>
   );
 }
