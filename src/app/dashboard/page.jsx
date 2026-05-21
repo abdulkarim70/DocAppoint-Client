@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { User, Calendar, Clock, Edit2, Trash2, X } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast"; 
+import { BiEdit, BiTrash } from "react-icons/bi";
 
 export default function DashboardPage() {
   const [bookings, setBookings] = useState([]);
@@ -79,7 +80,7 @@ export default function DashboardPage() {
       const data = await res.json();
 
       if (data.success) {
-        toast.success("Booking data successfully updated"); // সাকসেস টোস্ট
+        toast.success("Booking data successfully updated"); 
         setIsEditModalOpen(false);
         fetchBookings(); 
       } else {
@@ -108,7 +109,7 @@ export default function DashboardPage() {
 
       {activeTab === "bookings" ? (
         loading ? (
-          <div className="text-gray-500 animate-pulse">লোড হচ্ছে...</div>
+          <div className="text-gray-500 animate-pulse">Loading...</div>
         ) : bookings.length === 0 ? (
           <div className="text-gray-500 border border-dashed rounded-2xl p-8 text-center bg-white">
            No booking available for you
@@ -125,8 +126,8 @@ export default function DashboardPage() {
                   <div><span className="text-gray-400">Reason:</span> {booking.reason || "N/A"}</div>
                 </div>
                 <div className="flex gap-3">
-                  <Button variant="bordered" size="sm" className="rounded-xl" startContent={<Edit2 className="w-3.5 h-3.5" />} onClick={() => openEditModal(booking)}>Update</Button>
-                  <Button color="danger" size="sm" className="rounded-xl" startContent={<Trash2 className="w-3.5 h-3.5" />} onClick={() => handleDelete(booking._id)}>Delete</Button>
+                  <Button variant="bordered" size="sm" className="rounded-xl" startContent={<Edit2 className="w-3.5 h-3.5" />} onClick={() => openEditModal(booking)}> <BiEdit/> Update</Button>
+                  <Button variant="danger" size="sm" className="rounded-xl" startContent={<Trash2 className="w-3.5 h-3.5" />} onClick={() => handleDelete(booking._id)}> <BiTrash/> Delete</Button>
                 </div>
               </div>
             ))}

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-
+import toast from "react-hot-toast";
 import { Input, Button } from "@heroui/react";
 import { CalendarDays, Clock3, UserCheck } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
@@ -56,7 +56,7 @@ export default function AppointmentPage() {
   const handleSubmit = async () => {
   
     if (!formData.patientName || !formData.phone || !formData.date || !formData.time) {
-      alert("Please fill up all fields");
+    toast.error("Please fill up all fields")
       return;
     }
 
@@ -80,7 +80,7 @@ export default function AppointmentPage() {
       });
 
       if (response.ok) {
-        alert("");
+       toast.success("Appointment booked successfully!"); // toast booking
        
         setFormData({
           userEmail: "user@gmail.com",
@@ -92,11 +92,11 @@ export default function AppointmentPage() {
           reason: "",
         });
       } else {
-        alert("Booking failed");
+       toast.error("Booking Failed");;
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("Not connect to the server");
+     toast.error("Not connect to the server");
     } finally {
       setLoading(false);
     }
