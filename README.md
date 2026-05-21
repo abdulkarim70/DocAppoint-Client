@@ -1,7 +1,7 @@
 Website Name:  Doctor Appointment System
 
  Live Site: https://doc-appoint-client-ivory.vercel.app/
-🩺 About This Project
+
 
 
 Five  Features of This Website
