@@ -1,15 +1,26 @@
 
 
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const DoctorsDetailsPage = async ({ params }) => {
   const { id } = await params;
+const {token}=auth.api.getToken({
+  headers: await headers()
+    
+})
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,
-    { cache: "no-store" }
+    
+    { cache: "no-store",
+    headers:{
+      authorization:`Bearer ${token}`
+    }
+     }
   );
 
   const doctor = await res.json();

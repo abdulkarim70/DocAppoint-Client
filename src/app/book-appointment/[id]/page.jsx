@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 
 import { Input, Button } from "@heroui/react";
 import { CalendarDays, Clock3, UserCheck } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
 
 export default function AppointmentPage() {
   const params = useParams();
@@ -13,7 +14,8 @@ export default function AppointmentPage() {
   const [doctor, setDoctor] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  
+
+   
   const [formData, setFormData] = useState({
     userEmail: "user@gmail.com",
     patientName: "",
@@ -54,7 +56,7 @@ export default function AppointmentPage() {
   const handleSubmit = async () => {
   
     if (!formData.patientName || !formData.phone || !formData.date || !formData.time) {
-      alert("দয়া করে প্রয়োজনীয় সব ফিল্ড পূরণ করুন।");
+      alert("Please fill up all fields");
       return;
     }
 
