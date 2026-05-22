@@ -42,12 +42,12 @@ export default function HomePage() {
     }
   ];
 
-  // ================= FETCH DOCTORS =================
+  
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/appointments`,
+          `${process.env.NEXT_PUBLIC_API_URL}/doctors`,
           {
             cache: "no-store",
           }
@@ -88,7 +88,7 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ================= HERO SECTION ================= */}
+    
       <section className="bg-gradient-to-r from-cyan-50 to-blue-100 py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <Swiper
@@ -138,7 +138,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= TOP DOCTORS ================= */}
+    
       <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           {/* HEADING */}
