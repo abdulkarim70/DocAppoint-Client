@@ -1,4 +1,4 @@
-import HomeComponent from "@/components/HomePage";
+import HomeComponent from "@/Components/HomePage";
 
 export const metadata = {
   title: "Home",

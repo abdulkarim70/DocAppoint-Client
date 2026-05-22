@@ -1,7 +1,7 @@
 "use client"; 
 
 import { useState, useMemo } from "react";
-import AppointCard from "@/components/AppointCard"; 
+import AppointCard from "@/Components/AppointCard"; 
 
 export default function DoctorSearchGrid({ doctors = [] }) {
   const [search, setSearch] = useState("");
@@ -41,7 +41,7 @@ export default function DoctorSearchGrid({ doctors = [] }) {
         ) : (
           <div className="col-span-full text-center py-10">
             <p className="text-gray-500 text-lg">
-              No doctor found matching "{search}"
+              No doctor found matching 
             </p>
           </div>
         )}

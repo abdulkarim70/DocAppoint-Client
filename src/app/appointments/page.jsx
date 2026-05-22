@@ -1,4 +1,5 @@
-import DoctorSearchGrid from "@/components/DoctorSearchGrid";
+import DoctorSearchGrid from "@/Components/DoctorSearchGrid";
+
 
 
 export const metadata = {
