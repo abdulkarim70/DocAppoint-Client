@@ -1,4 +1,4 @@
-"use client"; // এটি ফাইলের একদম শুরুতে থাকতে হবে
+"use client"; 
 
 import { useState, useMemo } from "react";
 import AppointCard from "@/components/AppointCard"; 
@@ -6,7 +6,8 @@ import AppointCard from "@/components/AppointCard";
 export default function DoctorSearchGrid({ doctors = [] }) {
   const [search, setSearch] = useState("");
 
-  // 🔥 SAFE FILTER (never mutate original data)
+ 
+
   const filteredDoctors = useMemo(() => {
     return doctors.filter((doctor) =>
       (doctor?.name || "")
