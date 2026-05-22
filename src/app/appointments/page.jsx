@@ -1,5 +1,6 @@
 import DoctorSearchGrid from "@/components/DoctorSearchGrid";
 
+
 export const metadata = {
   title: "All Doctors | DocAppoint",
   description: "Find and book doctors easily",
